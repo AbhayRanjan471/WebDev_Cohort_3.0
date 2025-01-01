@@ -1,0 +1,13 @@
+.container{
+    background-color: red;
+    height: 200px;
+    width: 200px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+     /* margin: auto; set the div in center by taking equal margin from left and right in horizontal dir */
+}
+.child{
+    background-color: blue;
+    
+}

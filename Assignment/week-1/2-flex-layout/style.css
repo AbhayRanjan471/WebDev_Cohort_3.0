@@ -1,0 +1,40 @@
+.container{
+    background-color: blue;
+    display: flex;
+    /* flex-direction: row;  bydefault it is row, so no need to write flexdirection-row*/ 
+    /* margin: auto;
+    justify-content: center; */
+}
+/* .child1{
+    background-color: aqua;
+    width: 30%;
+}
+.child2{
+    background-color: aquamarine;
+    width: 70%;
+} */
+ .child{
+    /* The flex-grow property in CSS is used in Flexbox layouts to determine how much space a flex item should take up relative to the other items when there is extra space available in the container.*/
+    flex-grow:1; /* Grows to take 1 unit of available space */
+    background-color: aqua;
+    border: 1px solid #333;
+ }
+ .item1{
+    flex-grow: 1;
+    background-color: aquamarine;
+ }
+ .item2{
+    flex-grow: 2; /* Grows to take 2 units of available space */
+    background-color: beige;
+ }
+
+ /*
+ Key Points
+Flex Grow Ratio: The flex-grow values act as a ratio:
+
+If all items have flex-grow: 1, they grow equally.
+If one item has flex-grow: 2, it grows twice as much as items with flex-grow: 1.
+No Growth: Set flex-grow: 0; to prevent an item from growing.
+
+When to Use: Use flex-grow when you want items to fill available space dynamically while keeping their proportions.
+ */

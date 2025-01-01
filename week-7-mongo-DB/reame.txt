@@ -1,0 +1,4 @@
+mongodb+srv://abhi:<db_password>@cluster0.eggrc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+usare name = abhi
+password = mongodb@321
+IVwn7ZiM4tIgBsgw

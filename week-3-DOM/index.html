@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+ </head>
+ <body>
+   <h1>Todo List</h1>
+    <h4>1. Take class</h4>
+    <h4>2. Go</h4>
+    <h4>3. go to gym</h4>
+    <h4 id="play">4. go and play</h4>
+    <h4 class="gym">5. gym buddy </h4>
+    <input type="text"></input>
+    <button onclick="addTodo()">Add Todo</button>
+
+    <!-- JavaScript -->
+     <script>
+      function addTodo(){
+         const inputElmnt = document.querySelector('h4');// this will give the 1st h4 elemnt
+         //querySelector select the input tag
+         const inputElm = document.querySelector('input');
+         const val = inputElm.value;
+         console.log(val);
+         //querySelectorAll will select all the tags
+         const inputElm2 = document.querySelectorAll('h4');
+         const val2 = inputElm2[0].innerHTML; // this will give the value of the 1st h4 tag which is the 0th one
+         const val3 = inputElm2[1].innerText;
+         console.log(val2 , val3);
+
+         //using '#idName' we will select the id of any tag
+         const val4 = document.querySelector('#play');
+         console.log(val4.innerHTML)
+
+         //changing the value using inner.HTML
+         document.querySelector('.gym').innerText = "not an buddy";
+         // console.log(val5)
+
+         //creating a setInterval function which will change the count of a variable
+         let count = 0;
+         setInterval(function(){
+            // console.log(count);
+            document.querySelectorAll('h4')[1].innerHTML = count; //
+            count++;
+         }, 1000)
+      }
+     </script>    
+           
+ </body>
+ </html>

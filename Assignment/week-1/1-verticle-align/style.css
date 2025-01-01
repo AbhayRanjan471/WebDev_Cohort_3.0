@@ -1,0 +1,14 @@
+.container{
+    background-color: aqua;
+    display: flex;
+    height: 300px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+   
+}
+.content{
+    /* background-color: beige; */
+    
+   
+}
