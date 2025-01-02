@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const {auth, JWT_SECRET} = require('./auth');
 const { default: mongoose } = require("mongoose");
 const bcrypt = require('bcrypt');
+const {z} = require("zod"); //Validation
 
 
 //connnecting to mongoDB
@@ -26,6 +27,25 @@ app.use(express.json());// to parse the json body
 6.app.post('route' , callback function) ## app.post takes two argument
  */ 
 app.post('/signup' , async function(req, res){
+     // Define validation schema
+     const requiredBody = z.object({
+        name: z.string().min(3).max(20),
+        email: z.string().min(3).max(20).email(),
+        password: z.string().min(3).max(20),
+    });
+
+    // Validate the input
+    const parseDataWithSuccess = requiredBody.safeParse(req.body);
+
+    // Check validation result (that User has input the field according to the above zod Schema or not)
+    if (!parseDataWithSuccess.success) {
+        return res.status(400).json({
+            message: "Validation failed",
+            error: parseDataWithSuccess.error, // Provide detailed validation errors
+        });
+    }
+
+    // const { name, email, password } = parseDataWithSuccess.data;
     /* 
      Extracting Data from the Request Body
      When the user submits a form or sends data in the request body, it becomes available in req.body.
@@ -39,7 +59,7 @@ app.post('/signup' , async function(req, res){
     //we will those code inside try catch block, whcih we know will throw error
     try {
         //check if user already exist
-        const existingUser = await UserModel.findOne(email);
+        const existingUser = await UserModel.findOne({email});
         if(existingUser){
             return res.status(400).json({message:"Email is already registerd"})
         }
@@ -51,7 +71,7 @@ app.post('/signup' , async function(req, res){
     /*
     Inserting Data into the Database
     The create method stores a new user record in the database.
-    Always use 'async - await' while inserting data into the DataModel, kyu ki pahle hum dataBase me data inert kre ge then we will send the success response
+    Always use 'async - await' while inserting data into the DataModel, kyu ki pahle hum dataBase me data insert kre ge then we will send the success response
      */
     await UserModel.create({
         name: name,
@@ -59,6 +79,7 @@ app.post('/signup' , async function(req, res){
         password: hashedPassword,
     });
     } catch (error) {
+        console.log(error, "eror")
         return res.json({message: "User already exist"});
     }
     
@@ -71,6 +92,7 @@ app.post('/signin' , async function(req, res){
     const email = req.body.email;
     const password = req.body.password;
 
+    // Find user in the database by email
     const user = await UserModel.findOne({
         email:email,
     })
@@ -82,8 +104,8 @@ app.post('/signin' , async function(req, res){
         })
     }
 
-    //Now we will compare the password
-    const passwordMatch = bcrypt.compare(password, res.password)
+    //Now we will compare the password, compare(password from the req body , password which we find using the email from the database)
+    const passwordMatch = bcrypt.compare(password, user.password)
 
     //if the password match we will send the 'Token' or ye jo token bheje ga signin k time hum us token se veryfy kare ge apne JWT_SECRET key se kya wo match kr raha hai ye sare task auth wale funciton me ho ga, after varification we will allow user to use the application
     /* 

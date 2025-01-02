@@ -1,0 +1,7 @@
+Step1: Implemented Mongoose
+Step2: created Schema
+Step3: Implemented Express
+Step4: created all the neccessay API'S (/signup , /signin, /todo etc)
+Step5: written the functionality related to the APIS
+Step6: Implemented JWT token to send the token when ever user signIn
+
