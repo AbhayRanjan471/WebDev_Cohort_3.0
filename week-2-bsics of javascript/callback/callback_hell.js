@@ -4,8 +4,8 @@
         console.log("hello");
         setTimeout(function(){
             console.log("finaly")
-        }, 4000)
-    }, 3000)
+        }, 3000)
+    }, 4000)
  }, 2000)
 
  console.log("its a static")

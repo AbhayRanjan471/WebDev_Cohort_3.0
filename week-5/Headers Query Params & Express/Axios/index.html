@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    </head>
+</head>
+<body>
+    <div id="post"></div>
+    <button onclick="getData()">latest data</button>
+
+    <script>
+        function getData(){
+            //It will fetch the data, Axios is bit similar to fetch(), in Axiox() we gave to not convert the data to jSon is done bydefault
+            const response = axios.get("https://jsonplaceholder.typicode.com/posts/1");
+            console.log(response.data);
+            // document.getElementById("post").innerHTML = data.body;
+        }
+        getData();
+    </script>
+</body>
+</html>

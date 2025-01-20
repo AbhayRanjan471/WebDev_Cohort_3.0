@@ -32,7 +32,7 @@ function createOrder(cart){
     //WAY to CREATE a promise
     //we will create a promise constructor using the 'new' keyword
     //this promise constructor takes a funciton  & this funciton will have two parameters which is 'resolve' & 'reject'
-    //& these 'resolve & reject' are the funciton which are given by JavaScript to build prom`ises
+    //& these 'resolve & reject' are the funciton which are given by JavaScript to build promises
     const pr = new Promise(function(resolve,reject){
         //inside this promise we will write the logic to handle whatever we want to do, just like we do in normal function
 
