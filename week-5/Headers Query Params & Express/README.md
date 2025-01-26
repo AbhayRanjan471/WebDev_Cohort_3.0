@@ -381,6 +381,7 @@ axios.get('https://jsonplaceholder.typicode.com/posts/1')
 
 2. Basic POST Request
 axios.post('https://jsonplaceholder.typicode.com/posts', {
+  //This is the body which we are sending 
     title: 'My New Post',
     body: 'This is the content of the post.',
     userId: 1
