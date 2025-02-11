@@ -132,7 +132,7 @@ The **actual data** returned by the server.
     "email": "john@example.com"
 }
 
----------------------------------------------------------------------------------------------------------------
+
 ## **9. What is PORT=3000?**
 ### **Definition:**
 The **PORT** refers to a communication endpoint used by the server to listen for incoming requests. In this case, **3000** is the specific port number on which your server is configured to run.
@@ -147,7 +147,7 @@ The **PORT** refers to a communication endpoint used by the server to listen for
   - `3000` → Common for development servers.
   - `5000, 8000` → Other popular development ports.
 
-----------------------------------------------------------------------------------------------------------------
+
 ## **10. What is Payload?**
 ### **Definition:**
 In web development, the **payload** refers to the actual data being transmitted in a request or response body.
