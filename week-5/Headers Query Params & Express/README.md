@@ -131,6 +131,8 @@ The **actual data** returned by the server.
     "name": "John Doe",
     "email": "john@example.com"
 }
+```
+---------------------------------------------------------------------------------------------------------------------------------
 
 
 ## **9. What is PORT=3000?**
@@ -199,15 +201,13 @@ Content-Type: application/json
     "password": "securepassword123"
 }
 How to Handle in Code:
-
-Express.js:
-javascript
-Copy code
+```json
 app.post("/users", (req, res) => {
     const { name, email, password } = req.body; // Access payload
     console.log(name, email, password);
     res.send("User data received");
 });
+```
 
 2. Response Payload
 What It Is: Data sent by the server back to the client.
