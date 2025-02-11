@@ -209,8 +209,6 @@ app.post("/users", (req, res) => {
     res.send("User data received");
 });
 ```
-```
-
 2. Response Payload
 What It Is: Data sent by the server back to the client.
 
@@ -415,7 +413,7 @@ axios.get('https://jsonplaceholder.typicode.com/posts/1')
     console.error('Error:', error); // Handle errors
   });
 ```
-
+ ##`NOTE`: In `GET` request we can never send the `body` parameter , we can send the header but never the `body`, In `POST`,`DELETE`,`PUT` we can send the `body` , but bot in `GET` request
 ### 2. Basic `POST` Request
 ```javascript
 axios.post('https://jsonplaceholder.typicode.com/posts', {
