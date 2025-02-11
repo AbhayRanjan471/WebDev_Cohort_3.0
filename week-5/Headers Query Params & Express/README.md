@@ -201,7 +201,7 @@ Content-Type: application/json
     "password": "securepassword123"
 }
 How to Handle in Code:
-```json
+```javascript
 app.post("/users", (req, res) => {
     const { name, email, password } = req.body; // Access payload
     console.log(name, email, password);
