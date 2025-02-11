@@ -189,25 +189,24 @@ Uploading files.
 Sending data via POST/PUT requests.
 Example (JSON Payload in POST Request):
 
-http
-Copy code
 POST /users HTTP/1.1
+```json
 Content-Type: application/json
 {
     "name": "John Doe",
     "email": "john@example.com",
     "password": "securepassword123"
 }
-How to Handle in Code:
+```
 
-Express.js:
-javascript
-Copy code
+##How to Handle in Code:
+```javascript
 app.post("/users", (req, res) => {
     const { name, email, password } = req.body; // Access payload
     console.log(name, email, password);
     res.send("User data received");
 });
+```
 
 2. Response Payload
 What It Is: Data sent by the server back to the client.
@@ -221,8 +220,7 @@ Sending user profiles.
 Returning error or success messages.
 Example (JSON Payload in Response):
 
-http
-Copy code
+```json
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
@@ -234,48 +232,44 @@ Content-Type: application/json
         "email": "john@example.com"
     }
 }
+```
 How to Send Payload in Code:
-
-Express.js:
-javascript
-Copy code
+```javascript
 app.get("/users", (req, res) => {
     const users = [
         { id: 1, name: "John Doe", email: "john@example.com" },
         { id: 2, name: "Jane Smith", email: "jane@example.com" }
     ];
-    res.json({ success: true, data: users }); // Sending response payload
+    res.json({ success: true, data: users }); // Sending users data inside the data object and a scussess as a response 
 });
-Types of Payload Data
-JSON (Most Common):
+
+```
+##Types of Payload Data
+**JSON (Most Common):
 
 Structured data, easily parsed by most languages.
 Example:
-json
-Copy code
+```json
 {
     "id": 1,
     "title": "Learn Node.js"
 }
-XML:
 
-Another structured format (less common now).
-Example:
-xml
-Copy code
+```
+
+**XML:
+```html
 <user>
     <id>1</id>
     <name>John Doe</name>
 </user>
-Form Data:
-
+```
+**Form Data:
 Used for file uploads or form submissions.
 Example:
-makefile
-Copy code
 name=John+Doe&email=john%40example.com
-Plain Text:
 
+**Plain Text:
 Used for simple text-based communication.
 Example:
 Copy code
@@ -288,12 +282,10 @@ Postman:
 
 ----------------------------------------------------------------------------------
 # The fetch() 
-fetch is a JavaScript function that allows you to make HTTP requests to a server to get data or send data. It's often used to interact with APIs (Application Programming Interfaces) over the internet.
+-fetch is a JavaScript function that allows you to make HTTP requests to a server to get data or send data. It's often used to interact with APIs (Application Programming Interfaces) over the internet.
 
-# Basic Syntax
-javascript
-Copy
-Edit
+## Basic Syntax
+```javascript
 fetch(url, options)
   .then(response => {
     // handle the response
@@ -301,13 +293,15 @@ fetch(url, options)
   .catch(error => {
     // handle errors
   });
-Parameters:
-url: The URL to which the request is sent.
-options (optional): An object to customize the request (e.g., HTTP method, headers, body).
+  ```
+###Parameters:
+-url: The URL to which the request is sent.
+-options (optional): An object to customize the request (e.g., HTTP method, headers, body).
 
-# Example: Fetching Data
+## Example: Fetching Data
 Here’s how you can use fetch() to retrieve data from an API:
 
+```javascript
 fetch('https://jsonplaceholder.typicode.com/posts')
   .then(response => {
     if (!response.ok) {
@@ -321,10 +315,11 @@ fetch('https://jsonplaceholder.typicode.com/posts')
   .catch(error => {
     console.error('Error:', error); // Handle errors
   });
+```
 
-# Example: Sending Data (POST Request)
+## Example: Sending Data (POST Request)
 You can use the fetch() function to send data using a POST request:
-
+```javascript
 fetch('https://jsonplaceholder.typicode.com/posts', {
   method: 'POST',
   headers: {
@@ -343,20 +338,18 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
   .catch(error => {
     console.error('Error:', error);
   });
+```
 
-# Key Features of fetch():
-Promise-Based: fetch() returns a Promise, making it easy to work with then() or async/await for cleaner code.
+## Key Features of fetch():
+-`Promise-Based`: fetch() returns a Promise, making it easy to work with then() or async/await for cleaner code.
+-`Response Object`:The returned Response object contains details like status, statusText, and methods such as .json(), .text(), .blob(), etc.
+-`Error Handling`: fetch() only rejects the Promise on network errors.
+-`HTTP status errors`: (e.g., 404, 500) do not reject the Promise but need to be handled by checking response.ok or response.status.
+-`Customizable`: You can specify headers, request methods (GET, POST, PUT, DELETE, etc.), and body content through the options parameter.
 
-Response Object:The returned Response object contains details like status, statusText, and methods such as .json(), .text(), .blob(), etc.
-
-Error Handling: fetch() only rejects the Promise on network errors.
-HTTP status errors (e.g., 404, 500) do not reject the Promise but need to be handled by checking response.ok or response.status.
-
-Customizable: You can specify headers, request methods (GET, POST, PUT, DELETE, etc.), and body content through the options parameter.
-
-# Example: Using async/await
+## Example: Using async/await
 Here’s the same GET example rewritten with async/await:
-
+```javascript
 async function fetchData() {
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -371,43 +364,46 @@ async function fetchData() {
 }
 
 fetchData();
+```
 
-# Limitations of fetch():
-No Built-In Timeout: Fetch does not support a timeout option natively. You need to use a workaround (e.g., AbortController).
-
-No Automatic JSON Parsing: You must explicitly call .json() to parse JSON responses.
-
-CORS Restrictions: Fetch follows the same-origin policy unless the server supports CORS.
+## Limitations of fetch():
+-No Built-In Timeout: Fetch does not support a timeout option natively. You need to use a workaround (e.g., AbortController).
+-No Automatic JSON Parsing: You must explicitly call .json() to parse JSON responses.
+-CORS Restrictions: Fetch follows the same-origin policy unless the server supports CORS.
 
 -----------------------------------------------------------------------------------------------
 # What is Axios?
 Axios is a popular JavaScript library used to make HTTP requests. It is often used in web applications to interact with APIs, fetch data from servers, or send data to servers.
 
-# Why Use Axios?
-Easy to Use: Axios has a simple, user-friendly API that makes sending requests straightforward.
-Promise-Based: It works with promises, making it easy to handle asynchronous operations.
-Automatic JSON Handling: Axios automatically converts JSON data to JavaScript objects and vice versa.
-Cross-Browser Compatibility: Axios works seamlessly across modern browsers and even supports older browsers like IE 11.
+## Why Use Axios?
+-Easy to Use: Axios has a simple, user-friendly API that makes sending requests straightforward.
+-Promise-Based: It works with promises, making it easy to handle asynchronous operations.
+-Automatic JSON Handling: Axios automatically converts JSON data to JavaScript objects and vice versa.
+-Cross-Browser Compatibility: Axios works seamlessly across modern browsers and even supports older browsers like IE 11.
 
-# Features:
-Supports GET, POST, PUT, DELETE, etc.
-Automatic handling of request and response headers.
-Timeout control.
-Built-in support for request cancellation.
-Intercept requests and responses (e.g., for logging or authentication).
+### Features:
+-Supports GET, POST, PUT, DELETE, etc.
+-Automatic handling of request and response headers.
+-Timeout control.
+-Built-in support for request cancellation.
+-Intercept requests and responses (e.g., for logging or authentication).
 
-Installing Axios
+### Installing Axios
 You can install Axios via a package manager like npm or include it directly in an HTML file.
 
-For Node.js:
-# npm install axios
+### For Node.js:
+```bash
+ npm install axios 
+ ```
 
-For Browsers:
+### For Browsers:
 Include the CDN link in your HTML file:
+```html
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-# How to Use Axios?
-1. Basic GET Request
+```
+## How to Use Axios?
+### 1. Basic `GET` Request
+```javascript
 axios.get('https://jsonplaceholder.typicode.com/posts/1')
   .then(response => {
     console.log(response.data); // Handle the response data
@@ -415,8 +411,10 @@ axios.get('https://jsonplaceholder.typicode.com/posts/1')
   .catch(error => {
     console.error('Error:', error); // Handle errors
   });
+```
 
-2. Basic POST Request
+### 2. Basic `POST` Request
+```javascript
 axios.post('https://jsonplaceholder.typicode.com/posts', {
   //This is the body which we are sending 
     title: 'My New Post',
@@ -429,10 +427,12 @@ axios.post('https://jsonplaceholder.typicode.com/posts', {
   .catch(error => {
     console.error('Error:', error); // Handle errors
   });
+```
 
-3. Advanced Features of Axios
+### 3. Advanced Features of Axios
 Setting Headers
 You can include custom headers in your requests, such as authentication tokens.
+```javascript
 axios.get('https://api.example.com/data', {
   headers: {
     Authorization: 'Bearer my-token'
@@ -440,8 +440,10 @@ axios.get('https://api.example.com/data', {
 })
   .then(response => console.log(response.data))
   .catch(error => console.error(error));
+```
 
-4. Using Axios with Async/Await
+### 4. Using Axios with `Async/Await`
+```javascript
 async function fetchData() {
   try {
     const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
@@ -451,3 +453,4 @@ async function fetchData() {
   }
 }
 fetchData();
+```
