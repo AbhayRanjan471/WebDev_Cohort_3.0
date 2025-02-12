@@ -201,7 +201,7 @@ Content-Type: application/json
 }
 ```
 
-##How to Handle in Code:
+## How to Handle in Code:
 ```javascript
 app.post("/users", (req, res) => {
     const { name, email, password } = req.body; // Access payload
@@ -245,7 +245,7 @@ app.get("/users", (req, res) => {
 });
 
 ```
-##Types of Payload Data
+## Types of Payload Data
 **JSON (Most Common):
 
 Structured data, easily parsed by most languages.
@@ -295,7 +295,7 @@ fetch(url, options)
     // handle errors
   });
   ```
-###Parameters:
+### Parameters:
 -url: The URL to which the request is sent.
 -options (optional): An object to customize the request (e.g., HTTP method, headers, body).
 
@@ -413,7 +413,7 @@ axios.get('https://jsonplaceholder.typicode.com/posts/1')
     console.error('Error:', error); // Handle errors
   });
 ```
- ##`NOTE`: In `GET` request we can never send the `body` parameter , we can send the header but never the `body`, In `POST`,`DELETE`,`PUT` we can send the `body` , but bot in `GET` request
+ ## `NOTE`: In `GET` request we can never send the `body` parameter , we can send the header but never the `body`, In `POST`,`DELETE`,`PUT` we can send the `body` , but bot in `GET` request
 ### 2. Basic `POST` Request
 ```javascript
 axios.post('https://jsonplaceholder.typicode.com/posts', {
