@@ -1,0 +1,3 @@
+- npm init -y //install the package.json
+- npm i express
+- npm install jsonwebtoken
