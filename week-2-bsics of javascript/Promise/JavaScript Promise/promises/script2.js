@@ -1,4 +1,4 @@
-///////////////// CREATING A PROMISE  , CHANNING & ERROR HANDLING////////////
+///////////////// CREATING A PROMISE, CHANNING & ERROR HANDLING////////////
 
 const cart = ["shoes","pants","kurta"];
 

@@ -1,15 +1,24 @@
 const express = require("express");
+var cors = require('cors')
 const jwt = require("jsonwebtoken");
+const {JWT_SECRET, auth} = require('./auth.js');
 
-const JWT_SECRET = "dfgh567jcvbn67nbn";
-
+// const JWT_SECRET = "dfgh567jcvbn67nbn";
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 let Users =[];
 
+//localhost:3000
+//This approach is commonly used to serve static frontend files in an Express application.
+app.get('/', function(req,res){
+    res.sendFile(__dirname + "/public/index.html")
+})
+
 app.post("/signUp", function(req,res){
     const {userName, password} = req.body;
+    console.log(password,userName , "signupdetails")
 
     Users.push({
         userName,
@@ -21,6 +30,7 @@ app.post("/signUp", function(req,res){
 
 app.post("/signIn", function(req,res){
     const {userName,password} = req.body;
+    console.log(password,userName,"signindetails")
 
     let foundUser = null;
     //searching for the user in the array
@@ -32,9 +42,9 @@ app.post("/signIn", function(req,res){
     }
 
     if(foundUser){
-        //generating atoken 
+        //generating token 
         const token = jwt.sign({
-            userName:userName
+            userName:foundUser.userName
         }, JWT_SECRET)
 
         res.json({token:token})
@@ -43,15 +53,12 @@ app.post("/signIn", function(req,res){
     }
 })
 
-app.get("/get", function(req,res){
-    const token = req.header.token;
-    //veryifying the token send by the client using the JWT_SECRET
-    const decodeInformation = jwt.verify(token,JWT_SECRET);
-    const username = decodeInformation.userName;
-    //seraching the user 
+app.get("/get", auth, function(req,res){
+    const currentUser = req.userName
+  
     let foundUser = null;
     for (let i = 0; i < Users.length; i++) {
-        if (Users[i].userName == username) {
+        if (Users[i].userName == currentUser) {
         foundUser = Users[i];
         }
     }

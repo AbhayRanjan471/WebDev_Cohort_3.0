@@ -2,9 +2,10 @@ const express = require("express");
 const fs = require("fs");  // Importing the fs module
 
 const app = express();
+
 let todo =[];
 
-app.use(express.json());
+app.use(express.json()); // ✅ Enables JSON body parsing. By default, Express does not parse JSON request bodies. If a client (like Postman, a frontend app, or a browser) sends a request with JSON data, Express won’t automatically convert it into a JavaScript object unless you use express.json() middleware.
 
 app.post("/", function(req,res){
     //destructuring

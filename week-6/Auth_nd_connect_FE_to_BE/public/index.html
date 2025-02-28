@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- Adding this axios libraray to make API call -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+<body>
+    <div>
+        <p>SignUp</p>
+        <input id="signup-username" type="text" name="username" placeholder="enter username">
+        <input id="signup-password" type="password" placeholder="enter password">
+        <button onclick="signUp()">Sign Up</button>
+        
+    </div>
+    <div>
+        <p>SignIn</p>
+        <input id="signin-username" type="text" name="username" placeholder="enter username">
+        <input id="signin-password" type="password" placeholder="enter password">
+        <button onclick="signIn()">Sign In</button>
+        
+    </div>
+    <div>
+        <p>Todo</p>
+        <input id="" type="text" name="username" placeholder="enter username">
+        <input type="password" placeholder="enter password">
+        <button onclick="signIn()">SignUp</button>
+        
+    </div>
+</body>
+<script>
+    //SignUp fuction
+   async function signUp(){
+        const userName = document.getElementById("signup-username").value;
+        const password = document.getElementById("signup-password").value;
+        
+        await axios.post('http://localhost:3000/signUp', {
+            password,
+            userName,
+        }).then((response) => {
+            console.log(response.data)
+        }).catch((err) => {
+            console.error('Error', error);
+        });
+
+        console.log(data, "dataa")
+    }
+
+    //SignIn fucntion
+    async function signIn() {
+        const userName = document.getElementById("signin-username").value;
+        const password = document.getElementById("signin-password").value;
+
+        const response = await axios.post('http://localhost:3000/signIn', {
+            userName,
+            password
+        })
+
+        console.log(response, "responsess")
+        // we will store the token in the local Storage
+        localStorage.setItem("token",response.data.token);
+        alert("U r signed In")
+    } 
+
+    async function get() {
+        await axios.get('http://localhost:3000/get',{
+            headers:{
+                token:localStorage.getItem("token") //sending the token in the header, which we have stored in the localstorage
+            }
+        }).then((response)=>{
+            console.log(response?.data?.data);
+        }).catch((err)=>{
+            console.log(err)
+        })   
+    }
+    get();
+
+</script>
+</html>
